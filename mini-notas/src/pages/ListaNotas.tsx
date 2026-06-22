@@ -23,7 +23,7 @@ export function ListaNotas() {
     <section>
       <div className="d-flex gap-2 mb-4">
         <input
-          type="search"
+          type="text"
           className="form-control"
           placeholder="Buscar notas..."
           value={busca}
