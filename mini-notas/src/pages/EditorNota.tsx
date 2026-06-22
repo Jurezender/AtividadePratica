@@ -114,7 +114,7 @@ export function EditorNota() {
           onChange={(e) => setTitulo(e.target.value)}
           placeholder="Título da nota"
         />
-        <p className="text-danger"> O título precisa ser preenchido.</p>
+        <p className='text-danger' hidden={titulo.trim().length > 0}> O título precisa ser preenchido.</p>
       </div>
 
       <div>
