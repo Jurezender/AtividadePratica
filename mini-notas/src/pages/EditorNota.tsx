@@ -114,6 +114,7 @@ export function EditorNota() {
           onChange={(e) => setTitulo(e.target.value)}
           placeholder="Título da nota"
         />
+        <p className="text-danger"> O título precisa ser preenchido.</p>
       </div>
 
       <div>
@@ -138,9 +139,9 @@ export function EditorNota() {
       </div>
 
       {erroSalvar && <EstadoErro mensagem={erroSalvar} />}
-
+      
       <div className="d-flex gap-2">
-        <button type="submit" className="btn btn-primary" disabled={salvando}>
+        <button type="submit" className="btn btn-primary" disabled={titulo.trim().length === 0 || salvando}>
           {salvando ? 'Salvando...' : editando ? 'Salvar' : 'Criar'}
         </button>
         {editando && (
