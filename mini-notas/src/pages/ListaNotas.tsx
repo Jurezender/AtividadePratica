@@ -27,11 +27,17 @@ export function ListaNotas() {
           className="form-control"
           placeholder="Buscar notas..."
           value={busca}
-          onChange={(e) => setBusca(e.target.value)}
+          onChange={(e) => setBusca(e.target.value)}          
         />
+
+        <Link hidden={busca.trim().length === 0} to="" className="btn btn-outline-secondary text-nowrap" onClick={() => setBusca('')}>
+          X
+        </Link>
+
         <Link to="/nova" className="btn btn-primary text-nowrap">
           + Nova nota
         </Link>
+
       </div>
 
       <p hidden={carregando}>{'Total: ' + (notas?.length || 0) + (notas?.length !== 1 ? 
@@ -55,7 +61,6 @@ export function ListaNotas() {
         </div>
       )}
 
-      <p> Total: {notas?.length || 0} notas</p>
     </section>
   );
 }
