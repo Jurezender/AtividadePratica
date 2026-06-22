@@ -34,6 +34,9 @@ export function ListaNotas() {
         </Link>
       </div>
 
+      <p hidden={carregando}>{'Total: ' + (notas?.length || 0) + (notas?.length !== 1 ? 
+        ' notas' : ' nota')}</p>
+
       {carregando && <EstadoCarregando mensagem="Carregando notas..." />}
 
       {erro && <EstadoErro mensagem={erro} aoTentarDeNovo={recarregar} />}
@@ -51,6 +54,8 @@ export function ListaNotas() {
           ))}
         </div>
       )}
+
+      <p> Total: {notas?.length || 0} notas</p>
     </section>
   );
 }
