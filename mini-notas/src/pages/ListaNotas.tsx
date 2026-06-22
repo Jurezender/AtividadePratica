@@ -11,6 +11,7 @@ import { EstadoErro } from '../components/EstadoErro';
 export function ListaNotas() {
   const [busca, setBusca] = useState('');
   const buscaAtrasada = useDebounce(busca, 400);
+  const handleCickTag = (tag: string) => setBusca(tag);
 
   // A cada novo termo (após debounce), o useApi dispara uma requisição
   // e CANCELA a anterior automaticamente.
@@ -55,7 +56,7 @@ export function ListaNotas() {
         <div className="row g-3">
           {notas.map((n) => (
             <div className="col-12 col-sm-6 col-lg-4" key={n.id}>
-              <NotaCartao nota={n} />
+              <NotaCartao nota={n} clickTag={handleCickTag} />
             </div>
           ))}
         </div>

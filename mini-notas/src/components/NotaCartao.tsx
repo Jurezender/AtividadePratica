@@ -2,9 +2,12 @@
 import { Link } from 'react-router-dom';
 import type { Nota } from '../types/Nota';
 
-type Props = { nota: Nota };
+type Props = { 
+  nota: Nota;
+  clickTag?: (tag: string) => void;
+};
 
-export function NotaCartao({ nota }: Props) {
+export function NotaCartao({ nota, clickTag }: Props) {
   const previa = nota.conteudo.slice(0, 120);
   const truncado = nota.conteudo.length > 120;
   const atualizada = new Date(nota.atualizadaEm).toLocaleDateString('pt-BR');
@@ -15,7 +18,7 @@ export function NotaCartao({ nota }: Props) {
         <h3 className="card-title h5">
           <Link
             to={`/nota/${nota.id}`}
-            className="stretched-link text-decoration-none"
+            className="text-decoration-none"
           >
             {nota.titulo || '(sem título)'}
           </Link>
@@ -25,13 +28,14 @@ export function NotaCartao({ nota }: Props) {
           {truncado ? '…' : ''}
         </p>
       </div>
-
+    
       <div className="card-footer bg-transparent d-flex flex-wrap align-items-center gap-2">
         <small className="text-secondary me-auto">atualizada em {atualizada}</small>
         {(nota.tags ?? []).map((t) => (
-          <span key={t} className="badge text-bg-secondary">
+          <button key={t} className="badge text-bg-secondary" 
+          onClick={() => clickTag?.(t)}>
             #{t}
-          </span>
+          </button>
         ))}
       </div>
     </article>
